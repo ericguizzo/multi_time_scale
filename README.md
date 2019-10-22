@@ -19,11 +19,10 @@ class example(nn.Module):
 
     def __init__(self, layer_type, MTS_scale_factors, ,MTS_output_type, MTS_penalty):
         super(example, self).__init__()
-        self.layer_type = layer_type
 
-        if self.layer_type == 'conv':
+        if layer_type == 'conv':
             self.conv = nn.Conv2d(1, 10, kernel_size=[10,5])
-        if self.layer_type == 'multi':
+        elif layer_type == 'multi':
             self.conv = MultiscaleConv2d(1, 10, kernel_size=[10,5],
                         scale_factors=MTS_scale_factors, output_type=MTS_output_type,
                         stretch_penality_lambda=MTS_penalty)
