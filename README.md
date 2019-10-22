@@ -8,7 +8,7 @@ The layer can be used instead of a standatd pytorch nn.Conv2d layer inside a nn.
 * training_mode: String. Possible values: 'train_and_eval' (default): use parallel branche both in training and evaluation, 'only_eval' use only original kernel for training and all parallel branches for evaluation, 'only_train' use only original kernel for evaluation and all parallel branches for training, 'only_gradients' always use the only original kernel, but update it according to the gradients of all parallel branches. 'train_and_eval' is the best in our experiments.
 
 
-# EXAMPLE
+## EXAMPLE
 ```python
 import torch
 from torch import nn
