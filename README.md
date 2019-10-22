@@ -13,7 +13,6 @@ The layer can be used instead of a standatd pytorch nn.Conv2d layer inside a nn.
 import torch
 from torch import nn
 import torch.nn.functional as F
-import torch.utils.data as utils
 from multiscale_convlayer2 import MultiscaleConv2d
 
 class example(nn.Module):
@@ -33,12 +32,13 @@ class example(nn.Module):
 
     def forward(self, X):
         training_state = self.training  #this serves for
+        
         if self.layer_type == 'conv':
             X = F.relu(self.conv(X))
         if self.layer_type == 'multi':
             X = F.relu(self.conv(X, training_state))
-        X = X.reshape(X.size(0), -1)
 
+        X = X.reshape(X.size(0), -1)
         X = F.relu(self.hidden(X))
         X = self.out(X)
 
