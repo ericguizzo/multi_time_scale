@@ -8,7 +8,7 @@ The layer can be used instead of a standard torch.nn.Conv2d layer inside a nn.Mo
 * training_mode: String. Possible values: 'train_and_eval' (default): use parallel branche both in training and evaluation, 'only_eval' use only original kernel for training and all parallel branches for evaluation, 'only_train' use only original kernel for evaluation and all parallel branches for training, 'only_gradients' always use the only original kernel, but update it according to the gradients of all parallel branches. 'train_and_eval' is the best in our experiments.
 
 
-## EXAMPLE
+## EXAMPLE CLASS
 ```python
 import torch
 from torch import nn
@@ -45,4 +45,24 @@ class example(nn.Module):
 
         return X
 
+```
+
+## TRAINING
+During the training you should average the MTS kernels in the end of the training loop, after the update of the variables. You can use a build-in function of MTS to do so. For example:
+```python
+for epoch in range(len(n_epochs)):
+  #YOUR TRAINING CODE
+  optimizer.step()
+  for layer in model.modules():
+      if isinstance(layer, MultiscaleConv2d):
+          layer.update_kernels()
+```
+
+It is possible to compute the average usage of each stretch factor calling the function get_stretc_percs() on every MTS layer of a model. For example:
+```python
+stretch_percs = []
+for layer in model.modules():
+    if isinstance(layer, MultiscaleConv2d):
+        temp_stretch_percs = layer.get_stretch_percs()
+        vstretch_percs.append(temp_stretch_percs)
 ```
