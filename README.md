@@ -24,7 +24,9 @@ class example(nn.Module):
         if self.layer_type == 'conv':
             self.conv = nn.Conv2d(1, 10, kernel_size=[10,5])
         if self.layer_type == 'multi':
-            self.conv = MultiscaleConv2d(1, 10, kernel_size=[10,5], scale_factors=MTS_scale_factors, output_type=MTS_output_type, stretch_penality_lambda=MTS_penalty)
+            self.conv = MultiscaleConv2d(1, 10, kernel_size=[10,5],
+                        scale_factors=MTS_scale_factors, output_type=MTS_output_type,
+                        stretch_penality_lambda=MTS_penalty)
 
         self.hidden = nn.Linear(6735, 200)
         self.out = nn.Linear(200, 8)
