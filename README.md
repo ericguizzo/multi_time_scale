@@ -64,5 +64,5 @@ stretch_percs = []
 for layer in model.modules():
     if isinstance(layer, MultiscaleConv2d):
         temp_stretch_percs = layer.get_stretch_percs()
-        vstretch_percs.append(temp_stretch_percs)
+        stretch_percs.append(temp_stretch_percs)
 ```
