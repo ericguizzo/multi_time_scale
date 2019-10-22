@@ -32,7 +32,7 @@ class example(nn.Module):
 
 
     def forward(self, X):
-        training_state = self.training  #this serves for
+        training_state = self.training  #this serves for the output_type of MTS
 
         if self.layer_type == 'conv':
             X = F.relu(self.conv(X))
