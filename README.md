@@ -1,4 +1,4 @@
-This repo contains the code of Multi Time Scale convolution layer, as used in the paper "Multi Time Scale Convolution for Emotion Recognition from Speech Audio Signals", submitted for ICASSP 2020.
+This repo contains the code of Multi-Time-Scale convolution layer, as used in the paper "Multi-Time-Scale Convolution for Emotion Recognition from Speech Audio Signals", submitted for ICASSP 2020.
 
 ## USAGE
 The layer can be used instead of a standatd pytorch nn.Conv2d layer inside a nn.Module class, providing the same parameters as a standard convolution. In addition, the following parameters can be specified:
@@ -32,7 +32,7 @@ class example(nn.Module):
 
     def forward(self, X):
         training_state = self.training  #this serves for
-        
+
         if self.layer_type == 'conv':
             X = F.relu(self.conv(X))
         if self.layer_type == 'multi':
