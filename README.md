@@ -48,7 +48,7 @@ class example(nn.Module):
 ```
 
 ## TRAINING
-During the training you should average the MTS kernels in the end of the training loop, after the update of the variables. You can use a build-in function of MTS to do so. For example:
+During the training you should average the MTS kernels in the end of the training loop, after the update of the variables. You can use a build-in function of MTS to do so. Just call the function update_kernels() on every MTS layer of a model. For example:
 ```python
 for epoch in range(len(n_epochs)):
   #YOUR TRAINING CODE
